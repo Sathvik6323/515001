@@ -2769,6 +2769,32 @@ footer {
     margin: 0;
 }
 
+.railradar-embed {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+.railradar-embed h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+}
+
+.railradar-embed p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    margin-bottom: 1rem;
+}
+
+.railradar-embed iframe {
+    width: 100%;
+    height: 500px;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+}
+
 /* PIN Code Grid */
 .pincode-grid {
     display: grid;
