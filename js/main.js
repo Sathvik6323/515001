@@ -1,154 +1,107 @@
-// Mobile nav toggle
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.querySelector('.nav-links');
+// Mobile nav toggle - with error handling
+try {
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
 
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav on link click
+        var links = document.querySelectorAll('.nav-links a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        }
+    }
+
+    // Smooth scroll for anchor links
+    var anchors = document.querySelectorAll('a[href^="#"]');
+    for (var i = 0; i < anchors.length; i++) {
+        anchors[i].addEventListener('click', function(e) {
+            var href = this.getAttribute('href');
+            if (href && href !== '#') {
+                e.preventDefault();
+                var target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    }
+} catch (error) {
+    console.log('Nav init error:', error);
 }
 
-// Close nav on link click
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-    });
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
-
 // Weather Widget - Open-Meteo API (free, no key required)
-async function loadWeather() {
-    const widget = document.getElementById('weatherWidget');
+function loadWeather() {
+    var widget = document.getElementById('weatherWidget');
     if (!widget) return;
 
-    // Anantapur coordinates
-    const lat = 14.6819;
-    const lon = 77.6006;
+    var lat = 14.6819;
+    var lon = 77.6006;
 
-    try {
-        const response = await fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,uv_index&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=Asia/Kolkata`
-        );
-        const data = await response.json();
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,uv_index&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=Asia/Kolkata')
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            var current = data.current;
+            var daily = data.daily;
 
-        const current = data.current;
-        const daily = data.daily;
+            var weatherCodes = {
+                0: 'Clear sky', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast',
+                45: 'Foggy', 48: 'Depositing rime fog', 51: 'Light drizzle', 53: 'Moderate drizzle',
+                55: 'Dense drizzle', 61: 'Slight rain', 63: 'Moderate rain', 65: 'Heavy rain',
+                71: 'Slight snow', 73: 'Moderate snow', 75: 'Heavy snow', 77: 'Snow grains',
+                80: 'Slight rain showers', 81: 'Moderate rain showers', 82: 'Violent rain showers',
+                85: 'Slight snow showers', 86: 'Heavy snow showers', 95: 'Thunderstorm',
+                96: 'Thunderstorm with slight hail', 99: 'Thunderstorm with heavy hail'
+            };
 
-        // Weather code to description mapping
-        const weatherCodes = {
-            0: 'Clear sky',
-            1: 'Mainly clear',
-            2: 'Partly cloudy',
-            3: 'Overcast',
-            45: 'Foggy',
-            48: 'Depositing rime fog',
-            51: 'Light drizzle',
-            53: 'Moderate drizzle',
-            55: 'Dense drizzle',
-            61: 'Slight rain',
-            63: 'Moderate rain',
-            65: 'Heavy rain',
-            71: 'Slight snow',
-            73: 'Moderate snow',
-            75: 'Heavy snow',
-            77: 'Snow grains',
-            80: 'Slight rain showers',
-            81: 'Moderate rain showers',
-            82: 'Violent rain showers',
-            85: 'Slight snow showers',
-            86: 'Heavy snow showers',
-            95: 'Thunderstorm',
-            96: 'Thunderstorm with slight hail',
-            99: 'Thunderstorm with heavy hail'
-        };
+            var weatherDesc = weatherCodes[current.weather_code] || 'Unknown';
+            var uvIndex = current.uv_index || 0;
+            var uvAdvisory = 'Low';
+            var uvColor = '#22c55e';
+            
+            if (uvIndex > 10) { uvAdvisory = 'Extreme'; uvColor = '#a855f7'; }
+            else if (uvIndex > 7) { uvAdvisory = 'Very High'; uvColor = '#ef4444'; }
+            else if (uvIndex > 5) { uvAdvisory = 'High'; uvColor = '#f97316'; }
+            else if (uvIndex > 2) { uvAdvisory = 'Moderate'; uvColor = '#eab308'; }
 
-        const weatherDesc = weatherCodes[current.weather_code] || 'Unknown';
+            var sunrise = daily.sunrise[0] ? new Date(daily.sunrise[0]).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '--:--';
+            var sunset = daily.sunset[0] ? new Date(daily.sunset[0]).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '--:--';
+            var maxTemp = Math.round(daily.temperature_2m_max[0]);
+            var heatAdvisory = '';
+            
+            if (maxTemp >= 42) heatAdvisory = 'Extreme Heat Alert! Avoid outdoor activities.';
+            else if (maxTemp >= 38) heatAdvisory = 'Very Hot. Stay hydrated.';
+            else if (maxTemp >= 35) heatAdvisory = 'Hot. Drink water regularly.';
 
-        // UV Index advisory
-        const uvIndex = current.uv_index || 0;
-        let uvAdvisory = '';
-        let uvColor = '';
-        if (uvIndex <= 2) { uvAdvisory = 'Low'; uvColor = '#22c55e'; }
-        else if (uvIndex <= 5) { uvAdvisory = 'Moderate'; uvColor = '#eab308'; }
-        else if (uvIndex <= 7) { uvAdvisory = 'High'; uvColor = '#f97316'; }
-        else if (uvIndex <= 10) { uvAdvisory = 'Very High'; uvColor = '#ef4444'; }
-        else { uvAdvisory = 'Extreme'; uvColor = '#a855f7'; }
-
-        // Format sunrise/sunset
-        const sunrise = daily.sunrise[0] ? new Date(daily.sunrise[0]).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '--:--';
-        const sunset = daily.sunset[0] ? new Date(daily.sunset[0]).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '--:--';
-
-        // Heat advisory for Anantapur
-        const maxTemp = Math.round(daily.temperature_2m_max[0]);
-        let heatAdvisory = '';
-        if (maxTemp >= 42) heatAdvisory = '🔴 Extreme Heat Alert! Avoid outdoor activities.';
-        else if (maxTemp >= 38) heatAdvisory = '🟠 Very Hot. Stay hydrated, limit sun exposure.';
-        else if (maxTemp >= 35) heatAdvisory = '🟡 Hot. Drink water regularly.';
-
-        widget.innerHTML = `
-            <div class="weather-content">
-                <div class="weather-main">
-                    <div class="weather-temp">${Math.round(current.temperature_2m)}°C</div>
-                    <div>
-                        <div class="weather-desc">${weatherDesc}</div>
-                        <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.25rem;">Feels like ${Math.round(current.apparent_temperature)}°C</div>
-                        ${heatAdvisory ? `<div style="font-size: 0.85rem; margin-top: 0.5rem; padding: 0.5rem; background: rgba(255,255,255,0.15); border-radius: 6px;">${heatAdvisory}</div>` : ''}
-                    </div>
-                </div>
-                <div class="weather-details">
-                    <div class="weather-detail">
-                        <div class="weather-detail-value">${current.relative_humidity_2m}%</div>
-                        <div class="weather-detail-label">Humidity</div>
-                    </div>
-                    <div class="weather-detail">
-                        <div class="weather-detail-value">${Math.round(current.wind_speed_10m)} km/h</div>
-                        <div class="weather-detail-label">Wind</div>
-                    </div>
-                    <div class="weather-detail">
-                        <div class="weather-detail-value" style="color: ${uvColor};">${uvIndex.toFixed(1)}</div>
-                        <div class="weather-detail-label">UV Index (${uvAdvisory})</div>
-                    </div>
-                    <div class="weather-detail">
-                        <div class="weather-detail-value">${Math.round(daily.temperature_2m_max[0])}°C</div>
-                        <div class="weather-detail-label">High</div>
-                    </div>
-                    <div class="weather-detail">
-                        <div class="weather-detail-value">${Math.round(daily.temperature_2m_min[0])}°C</div>
-                        <div class="weather-detail-label">Low</div>
-                    </div>
-                    <div class="weather-detail">
-                        <div class="weather-detail-value">${sunrise}</div>
-                        <div class="weather-detail-label">Sunrise</div>
-                    </div>
-                    <div class="weather-detail">
-                        <div class="weather-detail-value">${sunset}</div>
-                        <div class="weather-detail-label">Sunset</div>
-                    </div>
-                    <div class="weather-detail">
-                        <div class="weather-detail-value">${daily.uv_index_max[0]?.toFixed(1) || '--'}</div>
-                        <div class="weather-detail-label">Max UV Today</div>
-                    </div>
-                </div>
-            </div>
-        `;
-    } catch (error) {
-        widget.innerHTML = `
-            <div style="text-align: center;">
-                <div style="font-size: 1.1rem; margin-bottom: 0.5rem;">Unable to load weather data</div>
-                <div style="font-size: 0.9rem; opacity: 0.7;">Please check your internet connection</div>
-            </div>
-        `;
-    }
+            widget.innerHTML = '<div class="weather-content">' +
+                '<div class="weather-main">' +
+                '<div class="weather-temp">' + Math.round(current.temperature_2m) + '°C</div>' +
+                '<div>' +
+                '<div class="weather-desc">' + weatherDesc + '</div>' +
+                '<div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.25rem;">Feels like ' + Math.round(current.apparent_temperature) + '°C</div>' +
+                (heatAdvisory ? '<div style="font-size: 0.85rem; margin-top: 0.5rem; padding: 0.5rem; background: rgba(255,255,255,0.15); border-radius: 6px;">' + heatAdvisory + '</div>' : '') +
+                '</div></div>' +
+                '<div class="weather-details">' +
+                '<div class="weather-detail"><div class="weather-detail-value">' + current.relative_humidity_2m + '%</div><div class="weather-detail-label">Humidity</div></div>' +
+                '<div class="weather-detail"><div class="weather-detail-value">' + Math.round(current.wind_speed_10m) + ' km/h</div><div class="weather-detail-label">Wind</div></div>' +
+                '<div class="weather-detail"><div class="weather-detail-value" style="color: ' + uvColor + ';">' + uvIndex.toFixed(1) + '</div><div class="weather-detail-label">UV Index (' + uvAdvisory + ')</div></div>' +
+                '<div class="weather-detail"><div class="weather-detail-value">' + maxTemp + '°C</div><div class="weather-detail-label">High</div></div>' +
+                '<div class="weather-detail"><div class="weather-detail-value">' + Math.round(daily.temperature_2m_min[0]) + '°C</div><div class="weather-detail-label">Low</div></div>' +
+                '<div class="weather-detail"><div class="weather-detail-value">' + sunrise + '</div><div class="weather-detail-label">Sunrise</div></div>' +
+                '<div class="weather-detail"><div class="weather-detail-value">' + sunset + '</div><div class="weather-detail-label">Sunset</div></div>' +
+                '<div class="weather-detail"><div class="weather-detail-value">' + (daily.uv_index_max[0] ? daily.uv_index_max[0].toFixed(1) : '--') + '</div><div class="weather-detail-label">Max UV Today</div></div>' +
+                '</div></div>';
+        })
+        .catch(function(error) {
+            widget.innerHTML = '<div style="text-align: center;"><div style="font-size: 1.1rem; margin-bottom: 0.5rem;">Unable to load weather data</div><div style="font-size: 0.9rem; opacity: 0.7;">Please check your internet connection</div></div>';
+        });
 }
 
 // Load weather on page load
