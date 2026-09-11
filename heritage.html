@@ -125,7 +125,7 @@
                 distance: '120 km',
                 description: 'Famous Vijayanagara-era temple known for its hanging pillar and exquisite murals. Dedicated to Lord Shiva.',
                 highlights: ['Hanging Pillar', 'Vijayanagara Murals', 'Nandi Statue'],
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Lepakshi_Temple.jpg/400px-Lepakshi_Temple.jpg'
+                image: 'images/heritage/lepakshi.jpg'
             },
             {
                 name: 'Gooty Fort',
@@ -134,7 +134,7 @@
                 distance: '50 km',
                 description: 'Historic hill fort with panoramic views. Played a key role in Vijayanagara and Mughal history.',
                 highlights: ['Hill Fort', 'Panoramic Views', 'Historic Battlements'],
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Gooty_Fort.jpg/400px-Gooty_Fort.jpg'
+                image: 'images/heritage/gooty-fort.jpg'
             },
             {
                 name: 'Penukonda Fort',
@@ -143,7 +143,7 @@
                 distance: '70 km',
                 description: 'Ancient fort that served as the second capital of Vijayanagara Empire. Features palaces and temples.',
                 highlights: ['Vijayanagara Capital', 'Babayan Dargah', 'Gagan Mahal'],
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Penukonda_Fort.jpg/400px-Penukonda_Fort.jpg'
+                image: 'images/heritage/penukonda-fort.jpg'
             },
             {
                 name: 'Thimmamma Marrimanu',
@@ -152,7 +152,7 @@
                 distance: '90 km',
                 description: 'World\'s largest tree by canopy area. A 550-year-old banyan tree covering 5 acres.',
                 highlights: ['World Record Holder', '550 Years Old', '5 Acre Canopy'],
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Thimmamma_Marrimanu.jpg/400px-Thimmamma_Marrimanu.jpg'
+                image: 'images/heritage/thimmamma-marrimanu.jpg'
             },
             {
                 name: 'Puttaparthi',
@@ -161,7 +161,7 @@
                 distance: '80 km',
                 description: 'Home of Prasanthi Nilayam ashram of Sri Sathya Sai Baba. Major spiritual destination.',
                 highlights: ['Prasanthi Nilayam', 'Chaitanya Jyoti Museum', 'Spiritual Center'],
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Putraparthi.jpg/400px-Putraparthi.jpg'
+                image: 'images/heritage/puttaparthi.jpg'
             },
             {
                 name: 'Kadiri Temple',
@@ -170,7 +170,7 @@
                 distance: '100 km',
                 description: 'Famous for Sri Narasimha Swamy Temple. One of the important pilgrimage sites in Andhra Pradesh.',
                 highlights: ['Narasimha Temple', 'Pilgrimage Site', 'Ancient Architecture'],
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Kadiri_Temple.jpg/400px-Kadiri_Temple.jpg'
+                image: 'images/heritage/kadiri.svg'
             },
             {
                 name: 'Hemavathi',
@@ -179,16 +179,16 @@
                 distance: '60 km',
                 description: 'Ancient site with ruins of temples and historical significance from the Vijayanagara period.',
                 highlights: ['Ancient Ruins', 'Vijayanagara Era', 'Archaeological Site'],
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Hemavathi.jpg/400px-Hemavathi.jpg'
+                image: 'images/heritage/hemavathi.svg'
             },
             {
-                name: 'Aluru Kona',
-                coords: [14.3167, 77.3833],
+                name: 'Ahobilam',
+                coords: [15.3167, 78.3833],
                 type: 'nature',
                 distance: '85 km',
                 description: 'Scenic waterfall and natural retreat in the hills. Popular weekend getaway for nature lovers.',
                 highlights: ['Waterfall', 'Hill Station', 'Nature Trek'],
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Aluru_Kona.jpg/400px-Aluru_Kona.jpg'
+                image: 'images/heritage/aluru-kona.jpg'
             }
         ];
 
@@ -272,23 +272,19 @@
         heritageSites.forEach(site => {
             const card = document.createElement('div');
             card.className = 'heritage-card';
-            card.innerHTML = `
-                <div class="heritage-card-image" style="background: linear-gradient(135deg, #667eea, #764ba2);">
-                    <div style="font-size: 3rem; text-align: center; padding: 2rem 0;">
-                        ${site.type === 'temple' ? '🛕' : site.type === 'fort' ? '🏰' : site.type === 'nature' ? '🌳' : site.type === 'spiritual' ? '' : '🏛️'}
-                    </div>
-                </div>
-                <div class="heritage-card-content">
-                    <div class="heritage-card-type">${site.type.toUpperCase()}</div>
-                    <h4>${site.name}</h4>
-                    <p class="heritage-card-distance">${site.distance} from Anantapur</p>
-                    <p class="heritage-card-desc">${site.description}</p>
-                    <div class="heritage-card-highlights">
-                        ${site.highlights.map(h => `<span>${h}</span>`).join('')}
-                    </div>
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=${site.coords[0]},${site.coords[1]}" target="_blank" class="heritage-card-link">Get Directions →</a>
-                </div>
-            `;
+            card.innerHTML = '<div class="heritage-card-image" style="background: linear-gradient(135deg, #667eea, #764ba2); overflow: hidden;">' +
+                '<img src="' + site.image + '" alt="' + site.name + '" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display=\'none\'">' +
+                '</div>' +
+                '<div class="heritage-card-content">' +
+                '<div class="heritage-card-type">' + site.type.toUpperCase() + '</div>' +
+                '<h4>' + site.name + '</h4>' +
+                '<p class="heritage-card-distance">' + site.distance + ' from Anantapur</p>' +
+                '<p class="heritage-card-desc">' + site.description + '</p>' +
+                '<div class="heritage-card-highlights">' +
+                site.highlights.map(function(h) { return '<span>' + h + '</span>'; }).join('') +
+                '</div>' +
+                '<a href="https://www.google.com/maps/dir/?api=1&destination=' + site.coords[0] + ',' + site.coords[1] + '" target="_blank" class="heritage-card-link">Get Directions &rarr;</a>' +
+                '</div>';
             grid.appendChild(card);
         });
     </script>
