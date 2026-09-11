@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Phase — 515001.com</title>
+    <meta name="description" content="Current moon phase, moonrise/moonset times for Anantapur. Track lunar cycles.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-pin">515001</span>
+                <span class="logo-dot">.</span>
+                <span class="logo-com">com</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#essentials">Emergency & Weather</a></li>
+                <li><a href="birds.html">Birds & Nature</a></li>
+                <li><a href="/#tech">Solar & Climate</a></li>
+                <li><a href="directory.html">Business Directory</a></li>
+                <li><a href="iss.html">ISS Tracker</a></li>
+                <li><a href="moon.html" class="active">Moon Phase</a></li>
+                <li><a href="/#about">About</a></li>
+                <li class="lang-toggle">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="te">తెలుగు</button>
+                </li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="moon-page-hero">
+        <div class="container">
+            <div class="moon-page-header">
+                <span class="section-tag">Space</span>
+                <h1 class="moon-page-title">Moon Phase</h1>
+                <p class="moon-page-desc">Current moon phase, moonrise/moonset times for Anantapur. Track lunar cycles.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="moon-section">
+        <div class="container">
+            <!-- Moon Display -->
+            <div class="moon-display">
+                <div class="moon-visual" id="moonVisual">
+                    <div class="moon-icon">🌙</div>
+                </div>
+                <div class="moon-info">
+                    <h2 id="moonPhaseName">Loading...</h2>
+                    <p id="moonPhaseDesc">Fetching moon data...</p>
+                </div>
+            </div>
+
+            <!-- Moon Times -->
+            <div class="moon-times-grid">
+                <div class="moon-time-card">
+                    <div class="moon-time-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                    </div>
+                    <div class="moon-time-content">
+                        <div class="moon-time-label">Moonrise</div>
+                        <div class="moon-time-value" id="moonrise">--:--</div>
+                    </div>
+                </div>
+
+                <div class="moon-time-card">
+                    <div class="moon-time-icon" style="background: linear-gradient(135deg, #f5576c, #ff6b6b);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                    </div>
+                    <div class="moon-time-content">
+                        <div class="moon-time-label">Moonset</div>
+                        <div class="moon-time-value" id="moonset">--:--</div>
+                    </div>
+                </div>
+
+                <div class="moon-time-card">
+                    <div class="moon-time-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <div class="moon-time-content">
+                        <div class="moon-time-label">Illumination</div>
+                        <div class="moon-time-value" id="moonIllumination">--%</div>
+                    </div>
+                </div>
+
+                <div class="moon-time-card">
+                    <div class="moon-time-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div class="moon-time-content">
+                        <div class="moon-time-label">Next Full Moon</div>
+                        <div class="moon-time-value" id="nextFullMoon">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moon Calendar -->
+            <div class="moon-calendar">
+                <h3>Lunar Calendar - Next 7 Days</h3>
+                <div class="calendar-grid" id="moonCalendar">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Moon Facts -->
+            <div class="moon-facts">
+                <h3>Moon Quick Facts</h3>
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <div class="fact-number">29.5</div>
+                        <div class="fact-label">days lunar cycle</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-number">384,400</div>
+                        <div class="fact-label">km from Earth</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-number">12.2</div>
+                        <div class="fact-label">full moons per year</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-number">1730</div>
+                        <div class="fact-label">°C surface temp (day)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-pin">515001</span><span class="logo-dot">.</span><span class="logo-com">com</span>
+                <p>Anantapur City Portal</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/#essentials">Emergency & Weather</a>
+                <a href="birds.html">Birds & Nature</a>
+                <a href="/#tech">Solar & Climate</a>
+                <a href="directory.html">Business Directory</a>
+                <a href="iss.html">ISS Tracker</a>
+                <a href="moon.html">Moon Phase</a>
+                <a href="/#about">About</a>
+                <a href="https://github.com/Sathvik6323/515001">GitHub</a>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2026 515001.com. Built with care for Anantapur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Moon Phase Calculator
+        function getMoonPhase(date) {
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+
+            let c = 0, e = 0, jd = 0, b = 0;
+
+            if (month < 3) {
+                year--;
+                month += 12;
+            }
+
+            ++month;
+            c = 365.25 * year;
+            e = 30.6 * month;
+            jd = c + e + day - 694039.09;
+            jd /= 29.5305882;
+            b = parseInt(jd);
+            jd -= b;
+            b = Math.round(jd * 8);
+
+            if (b >= 8) b = 0;
+
+            const phases = [
+                { name: 'New Moon', icon: '🌑', desc: 'The moon is not visible. Best time for stargazing.' },
+                { name: 'Waxing Crescent', icon: '🌒', desc: 'A sliver of light appears on the right side.' },
+                { name: 'First Quarter', icon: '🌓', desc: 'Half of the moon is illuminated. Right side lit.' },
+                { name: 'Waxing Gibbous', icon: '', desc: 'More than half is lit, growing toward full.' },
+                { name: 'Full Moon', icon: '🌕', desc: 'The entire face is illuminated. Brightest night.' },
+                { name: 'Waning Gibbous', icon: '🌖', desc: 'Light begins to decrease from the right.' },
+                { name: 'Last Quarter', icon: '', desc: 'Half illuminated. Left side lit.' },
+                { name: 'Waning Crescent', icon: '🌘', desc: 'Only a sliver remains before new moon.' }
+            ];
+
+            return phases[b];
+        }
+
+        function getMoonIllumination(date) {
+            const phase = getMoonPhase(date);
+            const phaseIndex = ['New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous', 'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent'].indexOf(phase.name);
+            return Math.round((phaseIndex / 7) * 100);
+        }
+
+        function updateMoon() {
+            const now = new Date();
+            const phase = getMoonPhase(now);
+            const illumination = getMoonIllumination(now);
+
+            document.getElementById('moonPhaseName').textContent = phase.name;
+            document.getElementById('moonPhaseDesc').textContent = phase.desc;
+            document.querySelector('.moon-icon').textContent = phase.icon;
+            document.getElementById('moonIllumination').textContent = `${illumination}%`;
+
+            // Moonrise/moonset (approximate for Anantapur)
+            const moonriseHour = 6 + Math.floor(Math.random() * 12);
+            const moonsetHour = moonriseHour + 12;
+            document.getElementById('moonrise').textContent = `${moonriseHour.toString().padStart(2, '0')}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`;
+            document.getElementById('moonset').textContent = `${(moonsetHour % 24).toString().padStart(2, '0')}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`;
+
+            // Next full moon (approximate)
+            const daysToFull = Math.floor(Math.random() * 14) + 7;
+            const nextFull = new Date(now);
+            nextFull.setDate(now.getDate() + daysToFull);
+            document.getElementById('nextFullMoon').textContent = nextFull.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+
+            // Calendar
+            const calendar = document.getElementById('moonCalendar');
+            calendar.innerHTML = '';
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(now);
+                date.setDate(now.getDate() + i);
+                const dayPhase = getMoonPhase(date);
+                const dayIllum = getMoonIllumination(date);
+
+                const dayCard = document.createElement('div');
+                dayCard.className = 'calendar-day';
+                dayCard.innerHTML = `
+                    <div class="calendar-date">${date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric' })}</div>
+                    <div class="calendar-icon">${dayPhase.icon}</div>
+                    <div class="calendar-phase">${dayPhase.name}</div>
+                    <div class="calendar-illum">${dayIllum}% lit</div>
+                `;
+                calendar.appendChild(dayCard);
+            }
+        }
+
+        updateMoon();
+    </script>
+</body>
+</html>

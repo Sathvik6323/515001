@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Directory — 515001.com</title>
+    <meta name="description" content="Curated business directory for Anantapur city (515001) — restaurants, healthcare, education, shopping, services">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-pin">515001</span>
+                <span class="logo-dot">.</span>
+                <span class="logo-com">com</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#essentials">Emergency & Weather</a></li>
+                <li><a href="birds.html">Birds & Nature</a></li>
+                <li><a href="/#tech">Solar & Climate</a></li>
+                <li><a href="directory.html" class="active">Business Directory</a></li>
+                <li><a href="iss.html">ISS Tracker</a></li>
+                <li><a href="moon.html">Moon Phase</a></li>
+                <li><a href="/#about">About</a></li>
+                <li class="lang-toggle">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="te">తెలుగు</button>
+                </li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="directory-page-hero">
+        <div class="container">
+            <div class="directory-page-header">
+                <span class="section-tag">Local Businesses</span>
+                <h1 class="directory-page-title">Best of Anantapur</h1>
+                <p class="directory-page-desc">Curated local businesses and services. Know a great place? <a href="/#contact" style="color: var(--primary);">Suggest it</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="directory" id="directory">
+        <div class="container">
+            <!-- Category Filters -->
+            <div class="directory-filters">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="food">Food & Dining</button>
+                <button class="filter-btn" data-category="health">Healthcare</button>
+                <button class="filter-btn" data-category="education">Education</button>
+                <button class="filter-btn" data-category="shopping">Shopping</button>
+                <button class="filter-btn" data-category="services">Services</button>
+            </div>
+
+            <!-- Search -->
+            <div class="directory-search">
+                <input type="text" id="businessSearch" placeholder="Search businesses...">
+            </div>
+
+            <!-- Business Grid -->
+            <div class="business-grid" id="businessGrid">
+                <!-- Food & Dining -->
+                <div class="business-card" data-category="food">
+                    <div class="business-badge">Popular</div>
+                    <div class="business-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                    </div>
+                    <h4>Mehfil Restaurant</h4>
+                    <p class="business-category">North Indian, Biryani</p>
+                    <p class="business-desc">Famous for Hyderabadi biryani and kebabs. Family dining since 2005.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.2</span>
+                        <span class="business-price">₹₹</span>
+                    </div>
+                    <a href="tel:+919876543210" class="business-contact">Call Now</a>
+                </div>
+
+                <div class="business-card" data-category="food">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                    </div>
+                    <h4>Sri Kanya Mess</h4>
+                    <p class="business-category">South Indian, Meals</p>
+                    <p class="business-desc">Authentic Andhra meals with unlimited rice and curries. Budget-friendly.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.0</span>
+                        <span class="business-price">₹</span>
+                    </div>
+                    <a href="tel:+919876543211" class="business-contact">Call Now</a>
+                </div>
+
+                <div class="business-card" data-category="food">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                    </div>
+                    <h4>Cafe Coffee Day</h4>
+                    <p class="business-category">Cafe, Snacks</p>
+                    <p class="business-desc">Coffee, snacks, and WiFi. Popular hangout spot near Clock Tower.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 3.8</span>
+                        <span class="business-price">₹</span>
+                    </div>
+                    <a href="tel:+919876543212" class="business-contact">Call Now</a>
+                </div>
+
+                <!-- Healthcare -->
+                <div class="business-card" data-category="health">
+                    <div class="business-badge">Recommended</div>
+                    <div class="business-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <h4>Government General Hospital</h4>
+                    <p class="business-category">Multi-specialty, Emergency</p>
+                    <p class="business-desc">24/7 emergency services. Major trauma center for the district.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.1</span>
+                        <span class="business-price">Free</span>
+                    </div>
+                    <a href="tel:108" class="business-contact">Emergency: 108</a>
+                </div>
+
+                <div class="business-card" data-category="health">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <h4>Apollo Pharmacy</h4>
+                    <p class="business-category">Pharmacy, 24/7</p>
+                    <p class="business-desc">Medicines, health products, home delivery available.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.3</span>
+                        <span class="business-price">₹</span>
+                    </div>
+                    <a href="tel:+919876543213" class="business-contact">Call Now</a>
+                </div>
+
+                <div class="business-card" data-category="health">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <h4>Sri Balaji Dental Clinic</h4>
+                    <p class="business-category">Dental Care</p>
+                    <p class="business-desc">Experienced dentist, modern equipment. Appointments recommended.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★★ 4.5</span>
+                        <span class="business-price">₹₹</span>
+                    </div>
+                    <a href="tel:+919876543214" class="business-contact">Call Now</a>
+                </div>
+
+                <!-- Education -->
+                <div class="business-card" data-category="education">
+                    <div class="business-badge">Top Rated</div>
+                    <div class="business-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 4 3 6 3s6-1 6-3v-5"/></svg>
+                    </div>
+                    <h4>JNTUA College of Engineering</h4>
+                    <p class="business-category">Engineering College</p>
+                    <p class="business-desc">Jawaharlal Nehru Technological University. Premier engineering institution.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.2</span>
+                        <span class="business-price">₹₹</span>
+                    </div>
+                    <a href="tel:+918554252000" class="business-contact">Call Now</a>
+                </div>
+
+                <div class="business-card" data-category="education">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 4 3 6 3s6-1 6-3v-5"/></svg>
+                    </div>
+                    <h4>Sri Venkateswara University</h4>
+                    <p class="business-category">University</p>
+                    <p class="business-desc">Multi-disciplinary university with arts, science, and commerce programs.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.0</span>
+                        <span class="business-price">₹₹</span>
+                    </div>
+                    <a href="tel:+918554252001" class="business-contact">Call Now</a>
+                </div>
+
+                <div class="business-card" data-category="education">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 4 3 6 3s6-1 6-3v-5"/></svg>
+                    </div>
+                    <h4>Narayana Junior College</h4>
+                    <p class="business-category">Intermediate Coaching</p>
+                    <p class="business-desc">Top coaching for EAMCET and IIT-JEE. Consistent results.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.1</span>
+                        <span class="business-price">₹₹₹</span>
+                    </div>
+                    <a href="tel:+919876543215" class="business-contact">Call Now</a>
+                </div>
+
+                <!-- Shopping -->
+                <div class="business-card" data-category="shopping">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    </div>
+                    <h4>Big Bazaar</h4>
+                    <p class="business-category">Supermarket</p>
+                    <p class="business-desc">Groceries, electronics, clothing. Weekly offers and discounts.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 3.9</span>
+                        <span class="business-price">₹</span>
+                    </div>
+                    <a href="tel:+919876543216" class="business-contact">Call Now</a>
+                </div>
+
+                <div class="business-card" data-category="shopping">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    </div>
+                    <h4>Anantapur Book House</h4>
+                    <p class="business-category">Bookstore</p>
+                    <p class="business-desc">Academic books, novels, stationery. Serving students for 20+ years.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★★ 4.6</span>
+                        <span class="business-price">₹</span>
+                    </div>
+                    <a href="tel:+919876543217" class="business-contact">Call Now</a>
+                </div>
+
+                <div class="business-card" data-category="shopping">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    </div>
+                    <h4>Royal Silk Sarees</h4>
+                    <p class="business-category">Clothing, Traditional</p>
+                    <p class="business-desc">Handloom sarees, dress materials. Custom stitching available.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.4</span>
+                        <span class="business-price">₹₹₹</span>
+                    </div>
+                    <a href="tel:+919876543218" class="business-contact">Call Now</a>
+                </div>
+
+                <!-- Services -->
+                <div class="business-card" data-category="services">
+                    <div class="business-badge">Trusted</div>
+                    <div class="business-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h4>Raju Electric Works</h4>
+                    <p class="business-category">Electrician, Repairs</p>
+                    <p class="business-desc">Home wiring, appliance repairs. 15 years experience. Emergency service.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★★ 4.7</span>
+                        <span class="business-price">₹</span>
+                    </div>
+                    <a href="tel:+919876543219" class="business-contact">Call Now</a>
+                </div>
+
+                <div class="business-card" data-category="services">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h4>Suresh Plumbing Services</h4>
+                    <p class="business-category">Plumber, 24/7</p>
+                    <p class="business-desc">Pipe fitting, leakage repairs, bathroom fittings. Quick response.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.3</span>
+                        <span class="business-price">₹₹</span>
+                    </div>
+                    <a href="tel:+919876543220" class="business-contact">Call Now</a>
+                </div>
+
+                <div class="business-card" data-category="services">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h4>Anantapur Cab Service</h4>
+                    <p class="business-category">Taxi, Outstation</p>
+                    <p class="business-desc">Local and outstation cabs. Airport drops to Bengaluru/Hyderabad.</p>
+                    <div class="business-meta">
+                        <span class="business-rating">★★★★☆ 4.0</span>
+                        <span class="business-price">₹₹</span>
+                    </div>
+                    <a href="tel:+919876543221" class="business-contact">Call Now</a>
+                </div>
+            </div>
+
+            <!-- Add Business CTA -->
+            <div class="directory-cta">
+                <h3>Own a business in Anantapur?</h3>
+                <p>Get listed on 515001.com — it's free for local businesses.</p>
+                <a href="/#contact" class="btn btn-primary">List Your Business</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-pin">515001</span><span class="logo-dot">.</span><span class="logo-com">com</span>
+                <p>Anantapur City Portal</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/#essentials">Emergency & Weather</a>
+                <a href="/#tech">Solar & Climate</a>
+                <a href="/#about">About</a>
+                <a href="https://github.com/Sathvik6323/515001">GitHub</a>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2026 515001.com. Built with care for Anantapur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

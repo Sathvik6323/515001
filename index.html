@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>515001 — Anantapur City Portal</title>
+    <meta name="description" content="Your one-stop portal for Anantapur city (515001) — News, directory, master plan, and more">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-pin">515001</span>
+                <span class="logo-dot">.</span>
+                <span class="logo-com">com</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#quick-access">All Features</a></li>
+                <li><a href="#essentials">Emergency & Weather</a></li>
+                <li><a href="birds.html">Birds & Nature</a></li>
+                <li><a href="#tech">Solar & Climate</a></li>
+                <li><a href="directory.html">Business Directory</a></li>
+                <li><a href="iss.html">ISS Tracker</a></li>
+                <li><a href="moon.html">Moon Phase</a></li>
+                <li><a href="#about">About</a></li>
+                <li class="lang-toggle">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="te">తెలుగు</button>
+                </li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-badge" data-i18n="hero-badge"> Anantapur, Andhra Pradesh</div>
+            <h1 class="hero-title">
+                <span class="title-line" data-i18n="hero-title-line">The Digital Heart of</span>
+                <span class="title-highlight" data-i18n="hero-title-highlight">Anantapur City</span>
+            </h1>
+            <p class="hero-subtitle" data-i18n="hero-subtitle">Your gateway to local news, business directory, city planning, government services, and everything that makes 515001 home.</p>
+            <div class="hero-actions">
+                <a href="https://sathvik6323.github.io/anantapur-masterplan/" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></svg>
+                    Explore Master Plan
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    Discover More
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">515001</span>
+                    <span class="stat-label">PIN Code</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">AP</span>
+                    <span class="stat-label">State</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">2026</span>
+                    <span class="stat-label">Launched</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+
+    <!-- Birds section moved to birds.html -->
+
+    <!-- Popup Banner for Bird Food Business -->
+    <div class="popup-banner" id="popupBanner">
+        <div class="popup-banner-inner">
+            <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
+            <div class="popup-badge">Local Business</div>
+            <div class="popup-content">
+                <div class="popup-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <div class="popup-info">
+                    <h3>Premium Bird Food Mix</h3>
+                    <p class="popup-desc">5-type cleaned millet mix with eggshell powder. Perfect nutrition for your feathered friends.</p>
+                    <div class="popup-features">
+                        <span>5 Millet Varieties</span>
+                        <span>Eggshell Powder</span>
+                        <span>Cleaned & Ready</span>
+                    </div>
+                    <a href="https://wa.me/919030806747?text=Hi!%20I'm%20interested%20in%20your%20bird%20food%20mix.%20Please%20share%20details." target="_blank" rel="noopener" class="popup-cta">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Order on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="quick-access" id="quick-access">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Everything in One Place</span>
+                <h2 class="section-title">What's on 515001.com</h2>
+                <p class="section-desc">Click any card to jump to that section.</p>
+            </div>
+            <div class="quick-grid">
+                <a href="#features" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">City Master Plan</span>
+                        <span class="quick-desc">Interactive map of Anantapur's urban development</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="#essentials" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #f5576c, #ff6b6b);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Emergency Contacts</span>
+                        <span class="quick-desc">Police, fire, ambulance — one-tap call</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="#essentials" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Live Weather</span>
+                        <span class="quick-desc">Real-time temperature, humidity, wind</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="#essentials" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Bus & Train Timings</span>
+                        <span class="quick-desc">APSRTC routes + Indian Railways (ATP)</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="#essentials" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">PIN Code Lookup</span>
+                        <span class="quick-desc">8 post offices under 515001</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="#essentials" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Government Offices</span>
+                        <span class="quick-desc">Collector, MRO, Municipal Corp, Police</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="#tech" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #fa709a, #f5576c);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Solar Calculator</span>
+                        <span class="quick-desc">Estimate rooftop solar savings for your home</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="#tech" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Air Quality (AQI)</span>
+                        <span class="quick-desc">Live PM2.5, PM10 readings for Anantapur</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="#tech" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Climate Dashboard</span>
+                        <span class="quick-desc">Temperature & rainfall charts (30-year data)</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="directory.html" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Business Directory</span>
+                        <span class="quick-desc">Curated "Best of Anantapur" listings</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="birds.html" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 12c0-4.4-3.6-8-8-8-3.3 0-6.1 2-7.4 4.9C3.1 9.6 1 12.6 1 16c0 2.2 1.8 4 4 4h14c1.7 0 3-1.3 3-3z"/><path d="M12 4c1.5 2 2.5 4.5 2.5 7.5S13.5 17 12 19"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Birds of Anantapur</span>
+                        <span class="quick-desc">19 common species with photos</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="iss.html" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #f5576c, #ff6b6b);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">ISS Tracker</span>
+                        <span class="quick-desc">Live International Space Station tracking</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+                <a href="moon.html" class="quick-card">
+                    <div class="quick-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                    </div>
+                    <div class="quick-info">
+                        <span class="quick-title">Moon Phase</span>
+                        <span class="quick-desc">Current moon phase & lunar calendar</span>
+                    </div>
+                    <span class="quick-badge live">Live</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Explore</span>
+                <h2 class="section-title">What's in 515001</h2>
+                <p class="section-desc">Everything you need to know about Anantapur city, all in one place.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card featured">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></svg>
+                    </div>
+                    <span class="feature-badge live">Live</span>
+                    <h3>City Master Plan</h3>
+                    <p>Interactive map of Anantapur's urban development plan. Compare satellite imagery with zoning overlays.</p>
+                    <a href="https://sathvik6323.github.io/anantapur-masterplan/" class="feature-link">
+                        Open Master Plan
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <span class="feature-badge live">Live</span>
+                    <h3>Business Directory</h3>
+                    <p>Find shops, restaurants, hospitals, schools, and services in the 515001 area.</p>
+                    <a href="directory.html" class="feature-link">
+                        Browse Directory
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2"/></svg>
+                    </div>
+                    <span class="feature-badge soon">Soon</span>
+                    <h3>Local News</h3>
+                    <p>Civic updates, events, and stories that matter to Anantapur residents.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <span class="feature-badge soon">Soon</span>
+                    <h3>Government Services</h3>
+                    <p>Quick links to municipal offices, emergency contacts, and public services.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+                    </div>
+                    <span class="feature-badge soon">Soon</span>
+                    <h3>Job Board</h3>
+                    <p>Local employment opportunities in and around Anantapur.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <span class="feature-badge soon">Soon</span>
+                    <h3>City Dashboard</h3>
+                    <p>Live weather, air quality, and civic data for Anantapur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="essentials" id="essentials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Essentials</span>
+                <h2 class="section-title">City Essentials</h2>
+                <p class="section-desc">Quick access to emergency contacts, weather, transport, and government services.</p>
+            </div>
+
+            <!-- Weather Widget -->
+            <div class="essentials-block">
+                <h3 class="block-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4facfe" stroke-width="2"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+                    Weather in Anantapur
+                </h3>
+                <div class="weather-widget" id="weatherWidget">
+                    <div class="weather-loading">Loading weather data...</div>
+                </div>
+                <p class="weather-source">Data from Open-Meteo. Auto-updates every 30 minutes.</p>
+            </div>
+
+            <!-- Bus & Train -->
+            <div class="essentials-block">
+                <h3 class="block-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#43e97b" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    Bus & Train Timings
+                </h3>
+                <div class="transport-grid">
+                    <div class="transport-card">
+                        <div class="transport-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        </div>
+                        <h4>APSRTC Buses</h4>
+                        <p>73+ routes from Anantapur bus station. Check live schedules and book tickets.</p>
+                        <div class="transport-actions">
+                            <a href="https://www.apsrtconline.in/" target="_blank" rel="noopener" class="transport-link">Book Tickets</a>
+                            <a href="https://english.kadapa.info/anantapur-bus-timings/" target="_blank" rel="noopener" class="transport-link secondary">View Timings</a>
+                        </div>
+                        <p class="transport-note">Bus Station: 08554-22177</p>
+                    </div>
+                    <div class="transport-card">
+                        <div class="transport-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                        </div>
+                        <h4>Indian Railways</h4>
+                        <p>96+ trains pass through Anantapur (ATP). Check live status, PNR, and book tickets.</p>
+                        <div class="transport-actions">
+                            <a href="https://www.irctc.co.in/" target="_blank" rel="noopener" class="transport-link">Book Tickets</a>
+                            <a href="https://enquiry.indianrail.gov.in/mntes/" target="_blank" rel="noopener" class="transport-link secondary">Live Status</a>
+                        </div>
+                        <p class="transport-note">Station Code: ATP | Enquiry: 139</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PIN Code Lookup -->
+            <div class="essentials-block">
+                <h3 class="block-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fa709a" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    PIN Code 515001 — Areas & Post Offices
+                </h3>
+                <div class="pincode-grid">
+                    <div class="pincode-card">
+                        <div class="pincode-name">Anantapur Head Post Office</div>
+                        <div class="pincode-phone">08554-274111</div>
+                    </div>
+                    <div class="pincode-card">
+                        <div class="pincode-name">Anantapur Collectorate</div>
+                        <div class="pincode-phone">08554-247450</div>
+                    </div>
+                    <div class="pincode-card">
+                        <div class="pincode-name">Aravindanagar</div>
+                        <div class="pincode-phone">08554-246750</div>
+                    </div>
+                    <div class="pincode-card">
+                        <div class="pincode-name">Patel Road</div>
+                        <div class="pincode-phone">08554-243050</div>
+                    </div>
+                    <div class="pincode-card">
+                        <div class="pincode-name">Ramachandra Nagar</div>
+                        <div class="pincode-phone">08554-243850</div>
+                    </div>
+                    <div class="pincode-card">
+                        <div class="pincode-name">Sainagar</div>
+                        <div class="pincode-phone">08554-276150</div>
+                    </div>
+                    <div class="pincode-card">
+                        <div class="pincode-name">Satyanandanagar</div>
+                        <div class="pincode-phone">08554-278550</div>
+                    </div>
+                    <div class="pincode-card">
+                        <div class="pincode-name">Kamalanagar</div>
+                        <div class="pincode-phone">08554-248950</div>
+                    </div>
+                </div>
+                <p class="pincode-note">All post offices under PIN 515001, Anantapur district, Andhra Pradesh. Source: India Post.</p>
+            </div>
+
+            <!-- Government Offices -->
+            <div class="essentials-block">
+                <h3 class="block-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a18cd1" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    Government Offices
+                </h3>
+                <div class="govt-grid">
+                    <div class="govt-card">
+                        <div class="govt-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h4>Collector & District Magistrate</h4>
+                        <p class="govt-address">Collectorate, Anantapuramu</p>
+                        <a href="tel:08554275706" class="govt-phone">08554-275706</a>
+                        <a href="https://ananthapuramu.ap.gov.in/" target="_blank" rel="noopener" class="govt-link">District Website</a>
+                    </div>
+                    <div class="govt-card">
+                        <div class="govt-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h4>Municipal Corporation</h4>
+                        <p class="govt-address">Near Sapthagiri Circle, Anantapur - 515001</p>
+                        <a href="tel:08554230234" class="govt-phone">08554-230234</a>
+                    </div>
+                    <div class="govt-card">
+                        <div class="govt-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h4>MRO / Tahsildar (Anantapur Mandal)</h4>
+                        <p class="govt-address">Mandal Revenue Office, Anantapur</p>
+                        <a href="tel:9493188819" class="govt-phone">94931-88819</a>
+                    </div>
+                    <div class="govt-card">
+                        <div class="govt-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h4>District Fire Officer</h4>
+                        <p class="govt-address">Opp: Govt General Hospital, Anantapuramu - 515004</p>
+                        <a href="tel:9949991070" class="govt-phone">99499-91070</a>
+                        <a href="tel:08554274398" class="govt-phone">08554-274398</a>
+                    </div>
+                    <div class="govt-card">
+                        <div class="govt-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h4>Superintendent of Police</h4>
+                        <p class="govt-address">S.P. Office, Anantapuramu - 515001</p>
+                        <a href="tel:08554274802" class="govt-phone">08554-274802</a>
+                        <a href="tel:08554240105" class="govt-phone">08554-240105</a>
+                    </div>
+                    <div class="govt-card">
+                        <div class="govt-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h4>District Revenue Officer</h4>
+                        <p class="govt-address">Collectorate, Anantapuramu</p>
+                        <a href="tel:9493188804" class="govt-phone">94931-88804</a>
+                    </div>
+                </div>
+                <p class="govt-note">Data sourced from ananthapuramu.ap.gov.in. Last verified: Sep 2026. Timings may change — verify before visiting.</p>
+            </div>
+
+            <!-- Emergency Contacts (moved to bottom) -->
+            <div class="essentials-block">
+                <h3 class="block-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f5576c" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    Emergency Contacts
+                </h3>
+                <div class="emergency-grid">
+                    <a href="tel:100" class="emergency-card">
+                        <div class="emergency-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="emergency-info">
+                            <span class="emergency-number">100</span>
+                            <span class="emergency-label">Police</span>
+                        </div>
+                        <span class="emergency-call">Tap to Call</span>
+                    </a>
+                    <a href="tel:101" class="emergency-card">
+                        <div class="emergency-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2c0 0-7 4-7 11v3l-2 2h18l-2-2v-3c0-7-7-11-7-11z"/><path d="M12 22v-4M8 22h8"/></svg>
+                        </div>
+                        <div class="emergency-info">
+                            <span class="emergency-number">101</span>
+                            <span class="emergency-label">Fire</span>
+                        </div>
+                        <span class="emergency-call">Tap to Call</span>
+                    </a>
+                    <a href="tel:108" class="emergency-card">
+                        <div class="emergency-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                        </div>
+                        <div class="emergency-info">
+                            <span class="emergency-number">108</span>
+                            <span class="emergency-label">Ambulance</span>
+                        </div>
+                        <span class="emergency-call">Tap to Call</span>
+                    </a>
+                    <a href="tel:181" class="emergency-card">
+                        <div class="emergency-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                        </div>
+                        <div class="emergency-info">
+                            <span class="emergency-number">181</span>
+                            <span class="emergency-label">Women Safety</span>
+                        </div>
+                        <span class="emergency-call">Tap to Call</span>
+                    </a>
+                    <a href="tel:1098" class="emergency-card">
+                        <div class="emergency-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                        </div>
+                        <div class="emergency-info">
+                            <span class="emergency-number">1098</span>
+                            <span class="emergency-label">Child Helpline</span>
+                        </div>
+                        <span class="emergency-call">Tap to Call</span>
+                    </a>
+                    <a href="tel:14400" class="emergency-card">
+                        <div class="emergency-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                        </div>
+                        <div class="emergency-info">
+                            <span class="emergency-number">14400</span>
+                            <span class="emergency-label">Anti-Corruption</span>
+                        </div>
+                        <span class="emergency-call">Tap to Call</span>
+                    </a>
+                </div>
+                <div class="emergency-local">
+                    <h4>Local Numbers</h4>
+                    <div class="local-contacts">
+                        <div class="local-contact">
+                            <span class="local-name">Collector Control Room</span>
+                            <a href="tel:08554220009" class="local-number">08554-220009</a>
+                        </div>
+                        <div class="local-contact">
+                            <span class="local-name">SP Office</span>
+                            <a href="tel:08554274802" class="local-number">08554-274802</a>
+                        </div>
+                        <div class="local-contact">
+                            <span class="local-name">Rural Police Station</span>
+                            <a href="tel:9440796811" class="local-number">94407-96811</a>
+                        </div>
+                        <div class="local-contact">
+                            <span class="local-name">Fire Station (Anantapur)</span>
+                            <a href="tel:9963739592" class="local-number">99637-39592</a>
+                        </div>
+                        <div class="local-contact">
+                            <span class="local-name">Election Helpline</span>
+                            <a href="tel:1950" class="local-number">1950</a>
+                        </div>
+                        <div class="local-contact">
+                            <span class="local-name">State Call Centre</span>
+                            <a href="tel:1100" class="local-number">1100</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section" id="map">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Explore</span>
+                <h2 class="section-title">Anantapur on the Map</h2>
+                <p class="section-desc">Find ATMs, banks, and key landmarks near you.</p>
+            </div>
+
+            <!-- Google Maps Embed -->
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61435.87778974!2d77.5706!3d14.6819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb590e0f0e0e0e1%3A0x0!2sAnantapur%2C+Andhra+Pradesh!5e0!3m2!1sen!2sin!4v1234567890"
+                    width="100%"
+                    height="400"
+                    style="border:0; border-radius: 16px;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- ATM Finder -->
+            <div class="atm-finder">
+                <h3 class="block-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4facfe" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                    Find ATMs Near You
+                </h3>
+                <p class="tech-intro">Click the button below to find ATMs near your current location in Anantapur.</p>
+                <button id="findAtmBtn" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Find ATMs Near Me
+                </button>
+                <div id="atmResults" class="atm-results"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-tools" id="tech">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Tech Tools</span>
+                <h2 class="section-title">Smart City Tools</h2>
+                <p class="section-desc">Data-driven tools built specifically for Anantapur.</p>
+            </div>
+
+            <!-- Solar Calculator -->
+            <div class="tech-block">
+                <h3 class="block-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fa709a" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    Solar Energy Calculator
+                </h3>
+                <p class="tech-intro">Anantapur gets <strong>~300 sunny days/year</strong> with avg. solar irradiance of <strong>5.7 kWh/m²/day</strong>. Your DISCOM is <strong>APSPDCL</strong> (Andhra Pradesh Southern Power Distribution Co. Ltd). Estimate your rooftop solar potential.</p>
+                <div class="solar-calculator">
+                    <div class="solar-inputs">
+                        <div class="input-group">
+                            <label for="roofArea">Roof Area (cents)</label>
+                            <input type="number" id="roofArea" value="5" min="1" max="100" step="0.5">
+                            <span class="input-hint">1 cent = 435.6 sq ft ≈ 40.47 m²</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="electricityRate">APSPDCL Tariff (₹/unit)</label>
+                            <input type="number" id="electricityRate" value="5.5" min="1" max="20" step="0.5">
+                            <span class="input-hint">Residential: ₹3.50–₹7.50/unit based on consumption slab. <a href="https://www.apsouthern.org.in/tariff" target="_blank" rel="noopener">View APSPDCL tariff</a></span>
+                        </div>
+                        <div class="input-group">
+                            <label for="systemCost">System Cost (₹/watt)</label>
+                            <input type="number" id="systemCost" value="50" min="30" max="100" step="5">
+                            <span class="input-hint">Typical rooftop solar: ₹45–₹60/watt (after subsidy)</span>
+                        </div>
+                    </div>
+                    <div class="solar-results" id="solarResults">
+                        <div class="solar-result-card">
+                            <div class="result-value" id="solarCapacity">--</div>
+                            <div class="result-label">System Capacity (kWp)</div>
+                        </div>
+                        <div class="solar-result-card">
+                            <div class="result-value" id="solarGeneration">--</div>
+                            <div class="result-label">Annual Generation (kWh)</div>
+                        </div>
+                        <div class="solar-result-card">
+                            <div class="result-value" id="solarSavings">--</div>
+                            <div class="result-label">Annual Savings (₹)</div>
+                        </div>
+                        <div class="solar-result-card">
+                            <div class="result-value" id="solarPayback">--</div>
+                            <div class="result-label">Payback Period (years)</div>
+                        </div>
+                        <div class="solar-result-card">
+                            <div class="result-value" id="solarCO2">--</div>
+                            <div class="result-label">CO2 Offset (tonnes/year)</div>
+                        </div>
+                        <div class="solar-result-card">
+                            <div class="result-value" id="solarLifetime">--</div>
+                            <div class="result-label">25-Year Savings (₹)</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="tech-note">Based on Anantapur's avg. solar irradiance of 5.7 kWh/m²/day, 80% system efficiency, and 25-year panel lifespan. Actual results may vary.</p>
+            </div>
+
+            <!-- AQI Widget -->
+            <div class="tech-block">
+                <h3 class="block-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4facfe" stroke-width="2"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+                    Air Quality Index (AQI)
+                </h3>
+                <div class="aqi-widget" id="aqiWidget">
+                    <div class="aqi-loading">Loading air quality data...</div>
+                </div>
+                <p class="tech-note">Data from Open-Meteo Air Quality API. Updates hourly. AQI scale: 0-50 Good, 51-100 Moderate, 101-150 Unhealthy for Sensitive, 151-200 Unhealthy, 201-300 Very Unhealthy, 301+ Hazardous.</p>
+            </div>
+
+            <!-- Climate Dashboard -->
+            <div class="tech-block">
+                <h3 class="block-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#43e97b" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+                    Climate Dashboard
+                </h3>
+                <div class="climate-charts">
+                    <div class="chart-container">
+                        <h4>Monthly Average Temperature (°C)</h4>
+                        <canvas id="tempChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h4>Monthly Rainfall (mm)</h4>
+                        <canvas id="rainChart"></canvas>
+                    </div>
+                </div>
+                <p class="tech-note">Historical climate data for Anantapur (1991-2020 averages) from Open-Meteo. Anantapur has a hot semi-arid climate with most rainfall during the southwest monsoon (Jun-Sep).</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="highlights">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Know Your City</span>
+                <h2 class="section-title">Anantapur at a Glance</h2>
+            </div>
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <div class="highlight-number">01</div>
+                    <h3>Rayalaseema Region</h3>
+                    <p>Anantapur is the largest district in Andhra Pradesh, located in the Rayalaseema region.</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-number">02</div>
+                    <h3>Sunshine City</h3>
+                    <p>Known for its hot, dry climate and abundant sunshine — one of India's sunniest cities.</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-number">03</div>
+                    <h3>Growth Hub</h3>
+                    <p>Rapidly developing with new infrastructure, IT parks, and urban expansion under the master plan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container about-inner">
+            <div class="about-content">
+                <span class="section-tag">About</span>
+                <h2 class="section-title">Why 515001.com?</h2>
+                <p>515001 is the PIN code for Anantapur city in Andhra Pradesh, India. This portal is built to serve as the digital identity of our city — a single place where residents, businesses, and visitors can find everything they need.</p>
+                <p>From interactive city planning maps to local business listings, news, and civic services — we're building the most comprehensive digital resource for Anantapur.</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Free for everyone</span>
+                    </div>
+                    <div class="about-feature">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Built by locals, for locals</span>
+                    </div>
+                    <div class="about-feature">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Always growing</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="visual-card">
+                    <div class="visual-pin">📍</div>
+                    <div class="visual-city">Anantapur</div>
+                    <div class="visual-state">Andhra Pradesh, India</div>
+                    <div class="visual-code">515001</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="cta-inner">
+                <h2>Have a suggestion for 515001.com?</h2>
+                <p>We're building this for the community. Share your ideas, report issues, or list your business.</p>
+                <a href="mailto:hello@515001.com" class="btn btn-primary btn-large">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-pin">515001</span><span class="logo-dot">.</span><span class="logo-com">com</span>
+                <p>Anantapur City Portal</p>
+            </div>
+            <div class="footer-links">
+                <a href="#features">Explore</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="https://github.com/Sathvik6323/515001">GitHub</a>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2026 515001.com. Built with care for Anantapur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Share Button -->
+    <button class="whatsapp-share" id="whatsappShare" aria-label="Share on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
