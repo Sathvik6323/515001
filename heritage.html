@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage Map — 515001.com</title>
+    <meta name="description" content="Explore heritage sites, temples, and weekend getaways around Anantapur.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="logo-pin">515001</span>
+                <span class="logo-dot">.</span>
+                <span class="logo-com">com</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#essentials">Essentials</a></li>
+                <li><a href="birds.html">Birds</a></li>
+                <li><a href="/#tech">Tech</a></li>
+                <li><a href="directory.html">Directory</a></li>
+                <li class="nav-dropdown">
+                    <a href="iss.html">Space ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="iss.html">ISS Tracker</a>
+                        <a href="moon.html">Moon Phase</a>
+                    </div>
+                </li>
+                <li><a href="heritage.html" class="active">Heritage</a></li>
+                <li><a href="/#about">About</a></li>
+                <li class="lang-toggle">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="te">తెలుగు</button>
+                </li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="heritage-page-hero">
+        <div class="container">
+            <div class="heritage-page-header">
+                <span class="section-tag">Explore</span>
+                <h1 class="heritage-page-title">Heritage & Weekend Getaways</h1>
+                <p class="heritage-page-desc">Discover temples, forts, and natural wonders around Anantapur. Perfect for day trips and cultural exploration.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section">
+        <div class="container">
+            <!-- Map -->
+            <div class="heritage-map-container">
+                <div id="heritageMap" style="height: 600px; border-radius: 16px; overflow: hidden;"></div>
+            </div>
+
+            <!-- Heritage Sites Grid -->
+            <div class="heritage-grid" id="heritageGrid">
+                <!-- Populated by JavaScript -->
+            </div>
+
+            <!-- Info -->
+            <div class="heritage-info">
+                <h3>About These Sites</h3>
+                <p>All locations are sourced from OpenStreetMap and Wikidata. Photos from Wikimedia Commons. Click any marker on the map for details and directions.</p>
+                <div class="heritage-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Heritage Sites</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50-100</div>
+                        <div class="stat-label">km from Anantapur</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Free</div>
+                        <div class="stat-label">Most sites have no entry fee</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-pin">515001</span><span class="logo-dot">.</span><span class="logo-com">com</span>
+                <p>Anantapur City Portal</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/#essentials">Essentials</a>
+                <a href="birds.html">Birds</a>
+                <a href="/#tech">Tech</a>
+                <a href="directory.html">Directory</a>
+                <a href="iss.html">ISS Tracker</a>
+                <a href="moon.html">Moon Phase</a>
+                <a href="heritage.html">Heritage</a>
+                <a href="/#about">About</a>
+                <a href="https://github.com/Sathvik6323/515001">GitHub</a>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2026 515001.com. Built with care for Anantapur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Heritage sites data
+        const heritageSites = [
+            {
+                name: 'Lepakshi Temple',
+                coords: [13.8067, 77.6069],
+                type: 'temple',
+                distance: '120 km',
+                description: 'Famous Vijayanagara-era temple known for its hanging pillar and exquisite murals. Dedicated to Lord Shiva.',
+                highlights: ['Hanging Pillar', 'Vijayanagara Murals', 'Nandi Statue'],
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Lepakshi_Temple.jpg/400px-Lepakshi_Temple.jpg'
+            },
+            {
+                name: 'Gooty Fort',
+                coords: [15.1167, 77.6167],
+                type: 'fort',
+                distance: '50 km',
+                description: 'Historic hill fort with panoramic views. Played a key role in Vijayanagara and Mughal history.',
+                highlights: ['Hill Fort', 'Panoramic Views', 'Historic Battlements'],
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Gooty_Fort.jpg/400px-Gooty_Fort.jpg'
+            },
+            {
+                name: 'Penukonda Fort',
+                coords: [14.0833, 77.5833],
+                type: 'fort',
+                distance: '70 km',
+                description: 'Ancient fort that served as the second capital of Vijayanagara Empire. Features palaces and temples.',
+                highlights: ['Vijayanagara Capital', 'Babayan Dargah', 'Gagan Mahal'],
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Penukonda_Fort.jpg/400px-Penukonda_Fort.jpg'
+            },
+            {
+                name: 'Thimmamma Marrimanu',
+                coords: [13.8833, 77.6167],
+                type: 'nature',
+                distance: '90 km',
+                description: 'World\'s largest tree by canopy area. A 550-year-old banyan tree covering 5 acres.',
+                highlights: ['World Record Holder', '550 Years Old', '5 Acre Canopy'],
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Thimmamma_Marrimanu.jpg/400px-Thimmamma_Marrimanu.jpg'
+            },
+            {
+                name: 'Puttaparthi',
+                coords: [14.1500, 77.8167],
+                type: 'spiritual',
+                distance: '80 km',
+                description: 'Home of Prasanthi Nilayam ashram of Sri Sathya Sai Baba. Major spiritual destination.',
+                highlights: ['Prasanthi Nilayam', 'Chaitanya Jyoti Museum', 'Spiritual Center'],
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Putraparthi.jpg/400px-Putraparthi.jpg'
+            },
+            {
+                name: 'Kadiri Temple',
+                coords: [14.1167, 78.1667],
+                type: 'temple',
+                distance: '100 km',
+                description: 'Famous for Sri Narasimha Swamy Temple. One of the important pilgrimage sites in Andhra Pradesh.',
+                highlights: ['Narasimha Temple', 'Pilgrimage Site', 'Ancient Architecture'],
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Kadiri_Temple.jpg/400px-Kadiri_Temple.jpg'
+            },
+            {
+                name: 'Hemavathi',
+                coords: [14.5167, 77.4167],
+                type: 'heritage',
+                distance: '60 km',
+                description: 'Ancient site with ruins of temples and historical significance from the Vijayanagara period.',
+                highlights: ['Ancient Ruins', 'Vijayanagara Era', 'Archaeological Site'],
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Hemavathi.jpg/400px-Hemavathi.jpg'
+            },
+            {
+                name: 'Aluru Kona',
+                coords: [14.3167, 77.3833],
+                type: 'nature',
+                distance: '85 km',
+                description: 'Scenic waterfall and natural retreat in the hills. Popular weekend getaway for nature lovers.',
+                highlights: ['Waterfall', 'Hill Station', 'Nature Trek'],
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Aluru_Kona.jpg/400px-Aluru_Kona.jpg'
+            }
+        ];
+
+        // Initialize map
+        const map = L.map('heritageMap').setView([14.5, 77.6], 8);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Custom icons for different types
+        const icons = {
+            temple: L.divIcon({
+                className: 'heritage-marker',
+                html: '<div style="width: 32px; height: 32px; background: #f5576c; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;">🛕</div>',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+            }),
+            fort: L.divIcon({
+                className: 'heritage-marker',
+                html: '<div style="width: 32px; height: 32px; background: #667eea; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;">🏰</div>',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+            }),
+            nature: L.divIcon({
+                className: 'heritage-marker',
+                html: '<div style="width: 32px; height: 32px; background: #43e97b; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;"></div>',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+            }),
+            spiritual: L.divIcon({
+                className: 'heritage-marker',
+                html: '<div style="width: 32px; height: 32px; background: #a18cd1; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;">🙏</div>',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+            }),
+            heritage: L.divIcon({
+                className: 'heritage-marker',
+                html: '<div style="width: 32px; height: 32px; background: #fa709a; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px;">🏛️</div>',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+            })
+        };
+
+        // Add markers
+        heritageSites.forEach(site => {
+            const marker = L.marker(site.coords, { icon: icons[site.type] }).addTo(map);
+            
+            const popupContent = `
+                <div style="min-width: 250px;">
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">${site.name}</h3>
+                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">${site.distance} from Anantapur</p>
+                    <p style="margin: 0 0 0.75rem 0; font-size: 0.9rem;">${site.description}</p>
+                    <div style="margin-bottom: 0.75rem;">
+                        <strong style="font-size: 0.85rem;">Highlights:</strong>
+                        <ul style="margin: 0.25rem 0 0 0; padding-left: 1.2rem; font-size: 0.85rem;">
+                            ${site.highlights.map(h => `<li>${h}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=${site.coords[0]},${site.coords[1]}" target="_blank" style="display: inline-block; padding: 0.4rem 0.8rem; background: #667eea; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem;">Get Directions</a>
+                </div>
+            `;
+            
+            marker.bindPopup(popupContent);
+        });
+
+        // Add Anantapur marker
+        const anantapurMarker = L.marker([14.6819, 77.6006], {
+            icon: L.divIcon({
+                className: 'heritage-marker',
+                html: '<div style="width: 40px; height: 40px; background: #0f172a; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; color: white;">A</div>',
+                iconSize: [40, 40],
+                iconAnchor: [20, 20]
+            })
+        }).addTo(map);
+        anantapurMarker.bindPopup('<b>Anantapur</b><br>515001 - Your starting point').openPopup();
+
+        // Populate heritage grid
+        const grid = document.getElementById('heritageGrid');
+        heritageSites.forEach(site => {
+            const card = document.createElement('div');
+            card.className = 'heritage-card';
+            card.innerHTML = `
+                <div class="heritage-card-image" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <div style="font-size: 3rem; text-align: center; padding: 2rem 0;">
+                        ${site.type === 'temple' ? '🛕' : site.type === 'fort' ? '🏰' : site.type === 'nature' ? '🌳' : site.type === 'spiritual' ? '' : '🏛️'}
+                    </div>
+                </div>
+                <div class="heritage-card-content">
+                    <div class="heritage-card-type">${site.type.toUpperCase()}</div>
+                    <h4>${site.name}</h4>
+                    <p class="heritage-card-distance">${site.distance} from Anantapur</p>
+                    <p class="heritage-card-desc">${site.description}</p>
+                    <div class="heritage-card-highlights">
+                        ${site.highlights.map(h => `<span>${h}</span>`).join('')}
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=${site.coords[0]},${site.coords[1]}" target="_blank" class="heritage-card-link">Get Directions →</a>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>

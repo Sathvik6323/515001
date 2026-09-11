@@ -31,6 +31,7 @@
                         <a href="moon.html" class="active">Moon Phase</a>
                     </div>
                 </li>
+                <li><a href="heritage.html">Heritage</a></li>
                 <li><a href="/#about">About</a></li>
                 <li class="lang-toggle">
                     <button class="lang-btn active" data-lang="en">EN</button>
@@ -58,7 +59,7 @@
             <!-- Moon Display -->
             <div class="moon-display">
                 <div class="moon-visual" id="moonVisual">
-                    <div class="moon-icon">🌙</div>
+                    <div class="moon-icon" id="moonIcon">🌙</div>
                 </div>
                 <div class="moon-info">
                     <h2 id="moonPhaseName">Loading...</h2>
@@ -150,12 +151,13 @@
             </div>
             <div class="footer-links">
                 <a href="/">Home</a>
-                <a href="/#essentials">Emergency & Weather</a>
-                <a href="birds.html">Birds & Nature</a>
-                <a href="/#tech">Solar & Climate</a>
-                <a href="directory.html">Business Directory</a>
+                <a href="/#essentials">Essentials</a>
+                <a href="birds.html">Birds</a>
+                <a href="/#tech">Tech</a>
+                <a href="directory.html">Directory</a>
                 <a href="iss.html">ISS Tracker</a>
                 <a href="moon.html">Moon Phase</a>
+                <a href="heritage.html">Heritage</a>
                 <a href="/#about">About</a>
                 <a href="https://github.com/Sathvik6323/515001">GitHub</a>
             </div>
@@ -166,97 +168,97 @@
     </footer>
 
     <script>
-        // Moon Phase Calculator
-        function getMoonPhase(date) {
-            const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
+        (function() {
+            function getMoonPhase(date) {
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var day = date.getDate();
 
-            let c = 0, e = 0, jd = 0, b = 0;
+                if (month < 3) {
+                    year--;
+                    month += 12;
+                }
 
-            if (month < 3) {
-                year--;
-                month += 12;
+                month++;
+                var c = 365.25 * year;
+                var e = 30.6 * month;
+                var jd = c + e + day - 694039.09;
+                jd /= 29.5305882;
+                var b = parseInt(jd);
+                jd -= b;
+                b = Math.round(jd * 8);
+
+                if (b >= 8) b = 0;
+
+                var phases = [
+                    { name: 'New Moon', icon: '🌑', desc: 'The moon is not visible. Best time for stargazing.' },
+                    { name: 'Waxing Crescent', icon: '🌒', desc: 'A sliver of light appears on the right side.' },
+                    { name: 'First Quarter', icon: '🌓', desc: 'Half of the moon is illuminated. Right side lit.' },
+                    { name: 'Waxing Gibbous', icon: '🌔', desc: 'More than half is lit, growing toward full.' },
+                    { name: 'Full Moon', icon: '🌕', desc: 'The entire face is illuminated. Brightest night.' },
+                    { name: 'Waning Gibbous', icon: '🌖', desc: 'Light begins to decrease from the right.' },
+                    { name: 'Last Quarter', icon: '🌗', desc: 'Half illuminated. Left side lit.' },
+                    { name: 'Waning Crescent', icon: '🌘', desc: 'Only a sliver remains before new moon.' }
+                ];
+
+                return phases[b];
             }
 
-            ++month;
-            c = 365.25 * year;
-            e = 30.6 * month;
-            jd = c + e + day - 694039.09;
-            jd /= 29.5305882;
-            b = parseInt(jd);
-            jd -= b;
-            b = Math.round(jd * 8);
-
-            if (b >= 8) b = 0;
-
-            const phases = [
-                { name: 'New Moon', icon: '🌑', desc: 'The moon is not visible. Best time for stargazing.' },
-                { name: 'Waxing Crescent', icon: '🌒', desc: 'A sliver of light appears on the right side.' },
-                { name: 'First Quarter', icon: '', desc: 'Half of the moon is illuminated. Right side lit.' },
-                { name: 'Waxing Gibbous', icon: '🌔', desc: 'More than half is lit, growing toward full.' },
-                { name: 'Full Moon', icon: '🌕', desc: 'The entire face is illuminated. Brightest night.' },
-                { name: 'Waning Gibbous', icon: '🌖', desc: 'Light begins to decrease from the right.' },
-                { name: 'Last Quarter', icon: '🌗', desc: 'Half illuminated. Left side lit.' },
-                { name: 'Waning Crescent', icon: '🌘', desc: 'Only a sliver remains before new moon.' }
-            ];
-
-            return phases[b];
-        }
-
-        function getMoonIllumination(date) {
-            const phase = getMoonPhase(date);
-            const phaseIndex = ['New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous', 'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent'].indexOf(phase.name);
-            return Math.round((phaseIndex / 7) * 100);
-        }
-
-        function updateMoon() {
-            const now = new Date();
-            const phase = getMoonPhase(now);
-            const illumination = getMoonIllumination(now);
-
-            document.getElementById('moonPhaseName').textContent = phase.name;
-            document.getElementById('moonPhaseDesc').textContent = phase.desc;
-            document.querySelector('.moon-icon').textContent = phase.icon;
-            document.getElementById('moonIllumination').textContent = illumination + '%';
-
-            // Moonrise/moonset (approximate for Anantapur)
-            const moonriseHour = 6 + Math.floor(Math.random() * 12);
-            const moonsetHour = moonriseHour + 12;
-            document.getElementById('moonrise').textContent = moonriseHour.toString().padStart(2, '0') + ':' + Math.floor(Math.random() * 60).toString().padStart(2, '0');
-            document.getElementById('moonset').textContent = (moonsetHour % 24).toString().padStart(2, '0') + ':' + Math.floor(Math.random() * 60).toString().padStart(2, '0');
-
-            // Next full moon (approximate)
-            const daysToFull = Math.floor(Math.random() * 14) + 7;
-            const nextFull = new Date(now);
-            nextFull.setDate(now.getDate() + daysToFull);
-            document.getElementById('nextFullMoon').textContent = nextFull.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
-
-            // Calendar
-            const calendar = document.getElementById('moonCalendar');
-            calendar.innerHTML = '';
-            for (let i = 0; i < 7; i++) {
-                const date = new Date(now);
-                date.setDate(now.getDate() + i);
-                const dayPhase = getMoonPhase(date);
-                const dayIllum = getMoonIllumination(date);
-
-                const dayCard = document.createElement('div');
-                dayCard.className = 'calendar-day';
-                dayCard.innerHTML = '<div class="calendar-date">' + date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric' }) + '</div>' +
-                    '<div class="calendar-icon">' + dayPhase.icon + '</div>' +
-                    '<div class="calendar-phase">' + dayPhase.name + '</div>' +
-                    '<div class="calendar-illum">' + dayIllum + '% lit</div>';
-                calendar.appendChild(dayCard);
+            function getMoonIllumination(date) {
+                var phase = getMoonPhase(date);
+                var phaseNames = ['New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous', 'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent'];
+                var phaseIndex = phaseNames.indexOf(phase.name);
+                return Math.round((phaseIndex / 7) * 100);
             }
-        }
 
-        // Run when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', updateMoon);
-        } else {
-            updateMoon();
-        }
+            function updateMoon() {
+                var now = new Date();
+                var phase = getMoonPhase(now);
+                var illumination = getMoonIllumination(now);
+
+                document.getElementById('moonPhaseName').textContent = phase.name;
+                document.getElementById('moonPhaseDesc').textContent = phase.desc;
+                document.getElementById('moonIcon').textContent = phase.icon;
+                document.getElementById('moonIllumination').textContent = illumination + '%';
+
+                // Moonrise/moonset (approximate for Anantapur)
+                var moonriseHour = 6 + Math.floor(Math.random() * 12);
+                var moonsetHour = moonriseHour + 12;
+                document.getElementById('moonrise').textContent = moonriseHour.toString().padStart(2, '0') + ':' + Math.floor(Math.random() * 60).toString().padStart(2, '0');
+                document.getElementById('moonset').textContent = (moonsetHour % 24).toString().padStart(2, '0') + ':' + Math.floor(Math.random() * 60).toString().padStart(2, '0');
+
+                // Next full moon (approximate)
+                var daysToFull = Math.floor(Math.random() * 14) + 7;
+                var nextFull = new Date(now);
+                nextFull.setDate(now.getDate() + daysToFull);
+                document.getElementById('nextFullMoon').textContent = nextFull.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+
+                // Calendar
+                var calendar = document.getElementById('moonCalendar');
+                calendar.innerHTML = '';
+                for (var i = 0; i < 7; i++) {
+                    var date = new Date(now);
+                    date.setDate(now.getDate() + i);
+                    var dayPhase = getMoonPhase(date);
+                    var dayIllum = getMoonIllumination(date);
+
+                    var dayCard = document.createElement('div');
+                    dayCard.className = 'calendar-day';
+                    dayCard.innerHTML = '<div class="calendar-date">' + date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric' }) + '</div>' +
+                        '<div class="calendar-icon">' + dayPhase.icon + '</div>' +
+                        '<div class="calendar-phase">' + dayPhase.name + '</div>' +
+                        '<div class="calendar-illum">' + dayIllum + '% lit</div>';
+                    calendar.appendChild(dayCard);
+                }
+            }
+
+            // Run when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', updateMoon);
+            } else {
+                updateMoon();
+            }
+        })();
     </script>
 </body>
 </html>
