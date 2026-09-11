@@ -851,6 +851,8 @@ footer {
 @media (max-width: 768px) {
     .container {
         padding: 0 16px;
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero-content {
@@ -889,11 +891,13 @@ footer {
     }
 
     .quick-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
     }
 
     .quick-card {
-        width: 100%;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
 
@@ -1975,6 +1979,7 @@ footer {
 .quick-access {
     padding: 80px 0;
     background: var(--white);
+    width: 100%;
 }
 
 .quick-grid {
@@ -1982,6 +1987,7 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1rem;
     width: 100%;
+    max-width: 100%;
 }
 
 .quick-card {
@@ -1995,6 +2001,8 @@ footer {
     transition: all 0.3s;
     border: 1px solid var(--gray-200);
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .quick-card:hover {
@@ -2046,6 +2054,7 @@ footer {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    z-index: 10;
 }
 
 .quick-badge.live {
