@@ -195,10 +195,10 @@
                 { name: 'New Moon', icon: '🌑', desc: 'The moon is not visible. Best time for stargazing.' },
                 { name: 'Waxing Crescent', icon: '🌒', desc: 'A sliver of light appears on the right side.' },
                 { name: 'First Quarter', icon: '🌓', desc: 'Half of the moon is illuminated. Right side lit.' },
-                { name: 'Waxing Gibbous', icon: '', desc: 'More than half is lit, growing toward full.' },
+                { name: 'Waxing Gibbous', icon: '🌔', desc: 'More than half is lit, growing toward full.' },
                 { name: 'Full Moon', icon: '🌕', desc: 'The entire face is illuminated. Brightest night.' },
-                { name: 'Waning Gibbous', icon: '🌖', desc: 'Light begins to decrease from the right.' },
-                { name: 'Last Quarter', icon: '', desc: 'Half illuminated. Left side lit.' },
+                { name: 'Waning Gibbous', icon: '', desc: 'Light begins to decrease from the right.' },
+                { name: 'Last Quarter', icon: '🌗', desc: 'Half illuminated. Left side lit.' },
                 { name: 'Waning Crescent', icon: '🌘', desc: 'Only a sliver remains before new moon.' }
             ];
 
@@ -254,7 +254,10 @@
             }
         }
 
-        updateMoon();
+        // Run when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            updateMoon();
+        });
     </script>
 </body>
 </html>
