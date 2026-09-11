@@ -165,7 +165,6 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
     <script>
         // Moon Phase Calculator
         function getMoonPhase(date) {
@@ -194,10 +193,10 @@
             const phases = [
                 { name: 'New Moon', icon: '🌑', desc: 'The moon is not visible. Best time for stargazing.' },
                 { name: 'Waxing Crescent', icon: '🌒', desc: 'A sliver of light appears on the right side.' },
-                { name: 'First Quarter', icon: '🌓', desc: 'Half of the moon is illuminated. Right side lit.' },
+                { name: 'First Quarter', icon: '', desc: 'Half of the moon is illuminated. Right side lit.' },
                 { name: 'Waxing Gibbous', icon: '🌔', desc: 'More than half is lit, growing toward full.' },
                 { name: 'Full Moon', icon: '🌕', desc: 'The entire face is illuminated. Brightest night.' },
-                { name: 'Waning Gibbous', icon: '', desc: 'Light begins to decrease from the right.' },
+                { name: 'Waning Gibbous', icon: '🌖', desc: 'Light begins to decrease from the right.' },
                 { name: 'Last Quarter', icon: '🌗', desc: 'Half illuminated. Left side lit.' },
                 { name: 'Waning Crescent', icon: '🌘', desc: 'Only a sliver remains before new moon.' }
             ];
@@ -219,13 +218,13 @@
             document.getElementById('moonPhaseName').textContent = phase.name;
             document.getElementById('moonPhaseDesc').textContent = phase.desc;
             document.querySelector('.moon-icon').textContent = phase.icon;
-            document.getElementById('moonIllumination').textContent = `${illumination}%`;
+            document.getElementById('moonIllumination').textContent = illumination + '%';
 
             // Moonrise/moonset (approximate for Anantapur)
             const moonriseHour = 6 + Math.floor(Math.random() * 12);
             const moonsetHour = moonriseHour + 12;
-            document.getElementById('moonrise').textContent = `${moonriseHour.toString().padStart(2, '0')}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`;
-            document.getElementById('moonset').textContent = `${(moonsetHour % 24).toString().padStart(2, '0')}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`;
+            document.getElementById('moonrise').textContent = moonriseHour.toString().padStart(2, '0') + ':' + Math.floor(Math.random() * 60).toString().padStart(2, '0');
+            document.getElementById('moonset').textContent = (moonsetHour % 24).toString().padStart(2, '0') + ':' + Math.floor(Math.random() * 60).toString().padStart(2, '0');
 
             // Next full moon (approximate)
             const daysToFull = Math.floor(Math.random() * 14) + 7;
@@ -244,20 +243,20 @@
 
                 const dayCard = document.createElement('div');
                 dayCard.className = 'calendar-day';
-                dayCard.innerHTML = `
-                    <div class="calendar-date">${date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric' })}</div>
-                    <div class="calendar-icon">${dayPhase.icon}</div>
-                    <div class="calendar-phase">${dayPhase.name}</div>
-                    <div class="calendar-illum">${dayIllum}% lit</div>
-                `;
+                dayCard.innerHTML = '<div class="calendar-date">' + date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric' }) + '</div>' +
+                    '<div class="calendar-icon">' + dayPhase.icon + '</div>' +
+                    '<div class="calendar-phase">' + dayPhase.name + '</div>' +
+                    '<div class="calendar-illum">' + dayIllum + '% lit</div>';
                 calendar.appendChild(dayCard);
             }
         }
 
         // Run when DOM is ready
-        document.addEventListener('DOMContentLoaded', function() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateMoon);
+        } else {
             updateMoon();
-        });
+        }
     </script>
 </body>
 </html>

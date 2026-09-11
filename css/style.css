@@ -936,11 +936,16 @@ footer {
 .bird-img {
     width: 100%;
     height: 220px;
-    object-fit: contain;
-    object-position: center top;
+    object-fit: cover;
+    object-position: center;
     border-radius: 12px;
     margin-bottom: 0.75rem;
     background: var(--gray-100);
+}
+
+.bird-img[src$=".svg"] {
+    object-fit: contain;
+    padding: 1rem;
 }
 
 .bird-img-fallback {
