@@ -8,13 +8,48 @@ try {
             navLinks.classList.toggle('active');
         });
 
-        // Close nav on link click
+        // Dropdown parents: tap to expand/collapse (mobile), and prevent the
+        // placeholder link from navigating while still opening the menu.
+        var dropdowns = document.querySelectorAll('.nav-dropdown > a');
+        for (var d = 0; d < dropdowns.length; d++) {
+            dropdowns[d].addEventListener('click', function(e) {
+                var parent = this.parentElement;
+                if (!parent) return;
+                if (parent.classList.contains('open')) {
+                    // Second tap on an open group follows the link.
+                    return;
+                }
+                e.preventDefault();
+                // Close sibling groups
+                var all = document.querySelectorAll('.nav-dropdown.open');
+                for (var o = 0; o < all.length; o++) {
+                    all[o].classList.remove('open');
+                }
+                parent.classList.add('open');
+            });
+        }
+
+        // Close nav on link click (but not on dropdown parents, which just expand)
         var links = document.querySelectorAll('.nav-links a');
         for (var i = 0; i < links.length; i++) {
             links[i].addEventListener('click', function() {
+                if (this.parentElement && this.parentElement.classList.contains('nav-dropdown')) {
+                    return;
+                }
                 navLinks.classList.remove('active');
             });
         }
+
+        // Close the whole nav when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.navbar')) {
+                navLinks.classList.remove('active');
+                var open = document.querySelectorAll('.nav-dropdown.open');
+                for (var o = 0; o < open.length; o++) {
+                    open[o].classList.remove('open');
+                }
+            }
+        });
     }
 
     // Smooth scroll for anchor links
@@ -148,10 +183,12 @@ function calculateSolar() {
 
 // Initialize solar calculator
 const solarInputs = document.querySelectorAll('#roofArea, #electricityRate, #systemCost');
-solarInputs.forEach(input => {
-    input.addEventListener('input', calculateSolar);
-});
-calculateSolar(); // Run on load
+if (solarInputs.length) {
+    solarInputs.forEach(input => {
+        input.addEventListener('input', calculateSolar);
+    });
+    calculateSolar(); // Run on load
+}
 
 // ============================================
 // AQI WIDGET
